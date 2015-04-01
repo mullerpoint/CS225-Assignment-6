@@ -69,6 +69,7 @@
     <ClCompile Include="Elements.cpp" />
     <ClCompile Include="MediaItems.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="MyError.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Videos.cpp" />
   </ItemGroup>
@@ -78,6 +79,7 @@
     <ClInclude Include="Elements.hpp" />
     <ClInclude Include="MediaItems.hpp" />
     <ClInclude Include="Music.hpp" />
+    <ClInclude Include="MyError.hpp" />
     <ClInclude Include="Videos.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

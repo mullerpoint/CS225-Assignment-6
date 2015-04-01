@@ -36,6 +36,9 @@
     <ClCompile Include="Videos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyError.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Author.hpp">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Videos.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyError.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
