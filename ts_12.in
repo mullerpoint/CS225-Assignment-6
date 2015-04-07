@@ -1,0 +1,152 @@
+r
+*
+c 1950 0 Bjarne Stroustrup
+c 1931 0 Frederick P. Brooks Jr.
+c 0 0 TR Reid
+c 1938 0 Donald E. Knuth
+//
+n Name of Null Object
+// PPP
++ b
+n Programming: Principles and Practice Using C++
+p 1305
+v 47.39
+i 1
+y 2014
+e 43 58 Hello World!
+e 255 302 Functions
+e 303 342 Classes
+e 583 626 Vectors and Free Store
+e 627 666 Vectors and Arrays
+t 0 
+s 412
+// MMM
++ b
+n The Mythical Man-Month
+p 336
+v 28.80
+i 1
+y 1975
+t 1
+e 3 12 The Tar Pit
+e 13 28 The Mythical Man Month
+e 97 106 Ten Pounds in a Five-Pound Sack
+e 115 126 Plan to Throw One Away
+e 153 162 Hatching a Catastrophe
+j 978-0201006506
+// The Chip
++ b
+n The Chip
+y 2001
+i 1
+v 13.61
+t 2
+p 320
+j 978-0375758287
+// TAOCP V1a
++ b
+n Fundamental Algorithms
+t 3
+v 58.14
+y 1997
+p 672
+// s 5
+j 978-0201896831
+// TAOCP V1b
++ b
+n The MMIX Supplement
+j 978-0133992311
+v 24.44
+y 2015
+p 224
+// TAOCP V2
++ b
+n Seminumerical Algorithms
+t 3
+y 1997
+j 978-0201896848
+v 65.91
+p 784
+// s 6
+// TAOCP V3
++ b
+n Sorting and Searching
+t 3
+y 1998
+v 58.05
+j 978-0201896855
+p 800
+// s 7
+// TAOCP V4A
++ b
+n Combinatorial Algorithms
+t 3
+y 2011
+p 883
+j 978-0201038040
+v 63.99
+// s 8
+// TAOCP V4B
++ b
+n Mathematical Preliminaries Redux
+t 3
+p hypertext doc
+// Babbage : On the Economy...
++ b
+n On the Economy of Machinery and Manufactures
+y 1832
+p 346
+c 1792 1871 Charles Babbage
+j 1108009107
+t 4
+i 0
+// Creation of the Computer Video
++ v
+n The Creation of the Computer
+y 2005
+b 50
+v 35.00 
+// Music
++ m
+n Computer Games
+y 2014
+f George Clinton
+v 13.98
+b 40.39
+// Media Item
++ i
+n Computer Ethics : Integrating Across the Curriculum
+v 28.27
+y 2009
+// Sequels
+#
+# 3
+s 5
+# 5
+s 6
+# 6
+s 7
+# 7
+s 8
+*
+r
+# 6
+-
+# 91
+-
+u
+# 6
+-
+# 9
+-
+*
+r
+q
+0
+0
+0
+
+
+
+
+

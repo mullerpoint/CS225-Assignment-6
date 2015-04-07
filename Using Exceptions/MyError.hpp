@@ -1,8 +1,8 @@
 #include <iostream>
-#include <exception>
+#include <>
 
 class MyError :
-	public std::exception
+	public std::
 {
 public:
 	MyError();

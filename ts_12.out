@@ -1,0 +1,481 @@
+
+Menu [-] : 
+Authors in Memory     = 0 @ 16 Bytes Ea. 
+               Bytes  = 0
+Books in Memory       = 0 @ 96 Bytes Ea. 
+               Bytes  = 0
+Music in Memory       = 0 @ 120 Bytes Ea. 
+               Bytes  = 0
+Video in Memory       = 0 @ 88 Bytes Ea. 
+               Bytes  = 0
+Media Items in Memory = 0 @ 64 Bytes Ea. 
+               Bytes  = 0
+Elements in Memory    = 0 @ 16 Bytes Ea. 
+               Bytes  = 0
+         Total Bytes  = 0
+
+Menu [-] : 
+=== Authors ===
+
+=== Media Items ===
+
+Menu [-] : Enter author year born : Enter author year died : Enter author name : Author [1] :  Bjarne Stroustrup created
+Menu [-] : Enter author year born : Enter author year died : Enter author name : Author [2] :  Frederick P. Brooks Jr. created
+Menu [-] : Enter author year born : Enter author year died : Enter author name : Author [3] :  TR Reid created
+Menu [-] : Enter author year born : Enter author year died : Enter author name : Author [4] :  Donald E. Knuth created
+Menu [-] : 
+Menu [-] : 
+
+MyEXCEPTION [ Menu Command requires a MediaItem be selected ] caught in main.
+Resulting from : n Name of Null Object
+
+Menu [-] : 
+Menu [-] : Item added and selected
+
+Menu [0] : Enter Media Item name : 
+Menu [0] : Enter Media Item pages : 
+Menu [0] : Enter New Value : 
+Menu [0] : Enter In Print (0/1)
+
+Menu [0] : Enter Media Item Year of Creation : 
+Menu [0] : Enter element start : Enter element end : Enter element name : Element Hello World! added to Programming: Principles and Practice Using C++
+Menu [0] : Enter element start : Enter element end : Enter element name : Element Functions added to Programming: Principles and Practice Using C++
+Menu [0] : Enter element start : Enter element end : Enter element name : Element Classes added to Programming: Principles and Practice Using C++
+Menu [0] : Enter element start : Enter element end : Enter element name : Element Vectors and Free Store added to Programming: Principles and Practice Using C++
+Menu [0] : Enter element start : Enter element end : Enter element name : Element Vectors and Arrays added to Programming: Principles and Practice Using C++
+Menu [0] : Enter Author Index : Author set to Bjarne Stroustrup
+Menu [0] : Enter index of sequel media item
+
+MyEXCEPTION [ ERROR: Bad Index entered ] caught in main.
+Resulting from : s 412
+
+Menu [0] : 
+Menu [0] : Item added and selected
+
+Menu [1] : Enter Media Item name : 
+Menu [1] : Enter Media Item pages : 
+Menu [1] : Enter New Value : 
+Menu [1] : Enter In Print (0/1)
+
+Menu [1] : Enter Media Item Year of Creation : 
+Menu [1] : Enter Author Index : Author set to Frederick P. Brooks Jr.
+Menu [1] : Enter element start : Enter element end : Enter element name : Element The Tar Pit added to The Mythical Man-Month
+Menu [1] : Enter element start : Enter element end : Enter element name : Element The Mythical Man Month added to The Mythical Man-Month
+Menu [1] : Enter element start : Enter element end : Enter element name : Element Ten Pounds in a Five-Pound Sack added to The Mythical Man-Month
+Menu [1] : Enter element start : Enter element end : Enter element name : Element Plan to Throw One Away added to The Mythical Man-Month
+Menu [1] : Enter element start : Enter element end : Enter element name : Element Hatching a Catastrophe added to The Mythical Man-Month
+Menu [1] : Enter Book ISBN : 
+Menu [1] : 
+Menu [1] : Item added and selected
+
+Menu [2] : Enter Media Item name : 
+Menu [2] : Enter Media Item Year of Creation : 
+Menu [2] : Enter In Print (0/1)
+
+Menu [2] : Enter New Value : 
+Menu [2] : Enter Author Index : Author set to TR Reid
+Menu [2] : Enter Media Item pages : 
+Menu [2] : Enter Book ISBN : 
+Menu [2] : 
+Menu [2] : Item added and selected
+
+Menu [3] : Enter Media Item name : 
+Menu [3] : Enter Author Index : Author set to Donald E. Knuth
+Menu [3] : Enter New Value : 
+Menu [3] : Enter Media Item Year of Creation : 
+Menu [3] : Enter Media Item pages : 
+Menu [3] : 
+Menu [3] : Enter Book ISBN : 
+Menu [3] : 
+Menu [3] : Item added and selected
+
+Menu [4] : Enter Media Item name : 
+Menu [4] : Enter Book ISBN : 
+Menu [4] : Enter New Value : 
+Menu [4] : Enter Media Item Year of Creation : 
+Menu [4] : Enter Media Item pages : 
+Menu [4] : 
+Menu [4] : Item added and selected
+
+Menu [5] : Enter Media Item name : 
+Menu [5] : Enter Author Index : Author set to Donald E. Knuth
+Menu [5] : Enter Media Item Year of Creation : 
+Menu [5] : Enter Book ISBN : 
+Menu [5] : Enter New Value : 
+Menu [5] : Enter Media Item pages : 
+Menu [5] : 
+Menu [5] : 
+Menu [5] : Item added and selected
+
+Menu [6] : Enter Media Item name : 
+Menu [6] : Enter Author Index : Author set to Donald E. Knuth
+Menu [6] : Enter Media Item Year of Creation : 
+Menu [6] : Enter New Value : 
+Menu [6] : Enter Book ISBN : 
+Menu [6] : Enter Media Item pages : 
+Menu [6] : 
+Menu [6] : 
+Menu [6] : Item added and selected
+
+Menu [7] : Enter Media Item name : 
+Menu [7] : Enter Author Index : Author set to Donald E. Knuth
+Menu [7] : Enter Media Item Year of Creation : 
+Menu [7] : Enter Media Item pages : 
+Menu [7] : Enter Book ISBN : 
+Menu [7] : Enter New Value : 
+Menu [7] : 
+Menu [7] : 
+Menu [7] : Item added and selected
+
+Menu [8] : Enter Media Item name : 
+Menu [8] : Enter Author Index : Author set to Donald E. Knuth
+Menu [8] : Enter Media Item pages : 
+
+MyEXCEPTION [ Invalid integer number of pages specified ] caught in main.
+Resulting from : p hypertext doc
+
+Menu [8] : 
+Menu [8] : Item added and selected
+
+Menu [9] : Enter Media Item name : 
+Menu [9] : Enter Media Item Year of Creation : 
+Menu [9] : Enter Media Item pages : 
+Menu [9] : Enter author year born : Enter author year died : Enter author name : Author [5] :  Charles Babbage created
+Menu [9] : Enter Book ISBN : 
+Menu [9] : Enter Author Index : Author set to Charles Babbage
+Menu [9] : Enter In Print (0/1)
+
+Menu [9] : 
+Menu [9] : Item added and selected
+
+Menu [10] : Enter Media Item name : 
+Menu [10] : Enter Media Item Year of Creation : 
+Menu [10] : Enter Video RunTime : 
+Menu [10] : Enter New Value : 
+Menu [10] : 
+Menu [10] : Item added and selected
+
+Menu [11] : Enter Media Item name : 
+Menu [11] : Enter Media Item Year of Creation : 
+Menu [11] : Enter Producer name : 
+Menu [11] : Enter New Value : 
+Menu [11] : Enter Music Length : 
+Menu [11] : 
+Menu [11] : Item added and selected
+
+Menu [12] : Enter Media Item name : 
+Menu [12] : Enter New Value : 
+Menu [12] : Enter Media Item Year of Creation : 
+Menu [12] : 
+Menu [12] : Change selected Item to (#) : 
+
+MyEXCEPTION [ Illegal input on select '#' command ] caught in main.
+Resulting from : #
+
+Menu [12] : Change selected Item to (#) : Item # 3 : Fundamental Algorithms now selected.
+
+Menu [3] : Enter index of sequel media item
+Menu [3] : Change selected Item to (#) : Item # 5 : Seminumerical Algorithms now selected.
+
+Menu [5] : Enter index of sequel media item
+Menu [5] : Change selected Item to (#) : Item # 6 : Sorting and Searching now selected.
+
+Menu [6] : Enter index of sequel media item
+Menu [6] : Change selected Item to (#) : Item # 7 : Combinatorial Algorithms now selected.
+
+Menu [7] : Enter index of sequel media item
+Menu [7] : 
+=== Authors ===
+Author[0]
+ Author    : Bjarne Stroustrup
+  Born     : 1950
+Author[1]
+ Author    : Frederick P. Brooks Jr.
+  Born     : 1931
+Author[2]
+ Author    : TR Reid
+Author[3]
+ Author    : Donald E. Knuth
+  Born     : 1938
+Author[4]
+ Author    : Charles Babbage
+  Born     : 1792
+  Died     : 1871
+
+=== Media Items ===
+MediaItem[0]
+Book       : Programming: Principles and Practice Using C++
+  Author   : Bjarne Stroustrup
+  Year     : 2014
+  Value    : $47.39
+  In Print : True
+ Element   : Hello World!
+  Start    : 43
+  End      : 58
+ Element   : Functions
+  Start    : 255
+  End      : 302
+ Element   : Classes
+  Start    : 303
+  End      : 342
+ Element   : Vectors and Free Store
+  Start    : 583
+  End      : 626
+ Element   : Vectors and Arrays
+  Start    : 627
+  End      : 666
+  Pages    : 1305
+MediaItem[1]
+Book       : The Mythical Man-Month
+  Author   : Frederick P. Brooks Jr.
+  Year     : 1975
+  Value    : $28.80
+  In Print : True
+ Element   : The Tar Pit
+  Start    : 3
+  End      : 12
+ Element   : The Mythical Man Month
+  Start    : 13
+  End      : 28
+ Element   : Ten Pounds in a Five-Pound Sack
+  Start    : 97
+  End      : 106
+ Element   : Plan to Throw One Away
+  Start    : 115
+  End      : 126
+ Element   : Hatching a Catastrophe
+  Start    : 153
+  End      : 162
+  ISBN     : 978-0201006506
+  Pages    : 336
+MediaItem[2]
+Book       : The Chip
+  Author   : TR Reid
+  Year     : 2001
+  Value    : $13.61
+  In Print : True
+  ISBN     : 978-0375758287
+  Pages    : 320
+MediaItem[3]
+Book       : Fundamental Algorithms
+  Author   : Donald E. Knuth
+  Year     : 1997
+  Value    : $58.14
+  Sequel   : Seminumerical Algorithms
+  ISBN     : 978-0201896831
+  Pages    : 672
+MediaItem[4]
+Book       : The MMIX Supplement
+  Year     : 2015
+  Value    : $24.44
+  ISBN     : 978-0133992311
+  Pages    : 224
+MediaItem[5]
+Book       : Seminumerical Algorithms
+  Author   : Donald E. Knuth
+  Year     : 1997
+  Value    : $65.91
+  Sequel   : Sorting and Searching
+  ISBN     : 978-0201896848
+  Pages    : 784
+MediaItem[6]
+Book       : Sorting and Searching
+  Author   : Donald E. Knuth
+  Year     : 1998
+  Value    : $58.05
+  Sequel   : Combinatorial Algorithms
+  ISBN     : 978-0201896855
+  Pages    : 800
+MediaItem[7]
+Book       : Combinatorial Algorithms
+  Author   : Donald E. Knuth
+  Year     : 2011
+  Value    : $63.99
+  Sequel   : Mathematical Preliminaries Redux
+  ISBN     : 978-0201038040
+  Pages    : 883
+MediaItem[8]
+Book       : Mathematical Preliminaries Redux
+  Author   : Donald E. Knuth
+MediaItem[9]
+Book       : On the Economy of Machinery and Manufactures
+  Author   : Charles Babbage
+  Year     : 1832
+  In Print : False
+  ISBN     : 1108009107
+  Pages    : 346
+MediaItem[10]
+Video      : The Creation of the Computer
+  Year     : 2005
+  Value    : $35
+  RunTime  : 50 minutes
+MediaItem[11]
+Music      : Computer Games
+  Year     : 2014
+  Value    : $13.98
+  Producer : George Clinton
+  Run Len  : 40.39
+MediaItem[12]
+Media Item : Computer Ethics : Integrating Across the Curriculum
+  Year     : 2009
+  Value    : $28.27
+
+Menu [7] : 
+Authors in Memory     = 5 @ 16 Bytes Ea. 
+               Bytes  = 80
+Books in Memory       = 10 @ 96 Bytes Ea. 
+               Bytes  = 960
+Music in Memory       = 1 @ 120 Bytes Ea. 
+               Bytes  = 120
+Video in Memory       = 1 @ 88 Bytes Ea. 
+               Bytes  = 88
+Media Items in Memory = 13 @ 64 Bytes Ea. 
+               Bytes  = 832
+Elements in Memory    = 10 @ 16 Bytes Ea. 
+               Bytes  = 160
+         Total Bytes  = 1472
+
+Menu [7] : Change selected Item to (#) : Item # 6 : Sorting and Searching now selected.
+
+Menu [6] : 
+ ==> Removing Sorting and Searching
+ ==> Removing Sorting and Searching as Sequel to Seminumerical Algorithms
+
+Menu [-] : Change selected Item to (#) : 
+
+MyEXCEPTION [ Illegal input on select '#' command ] caught in main.
+Resulting from : # 91
+
+Menu [-] : 
+
+MyEXCEPTION [ Menu Command requires a MediaItem be selected ] caught in main.
+Resulting from : -
+
+Menu [-] : 
+==> Sorting Media Items
+
+Menu [-] : Change selected Item to (#) : Item # 6 : Programming: Principles and Practice Using C++ now selected.
+
+Menu [6] : 
+ ==> Removing Programming: Principles and Practice Using C++
+Menu [-] : Change selected Item to (#) : Item # 9 : The MMIX Supplement now selected.
+
+Menu [9] : 
+ ==> Removing The MMIX Supplement
+Menu [-] : 
+=== Authors ===
+Author[0]
+ Author    : Bjarne Stroustrup
+  Born     : 1950
+Author[1]
+ Author    : Frederick P. Brooks Jr.
+  Born     : 1931
+Author[2]
+ Author    : TR Reid
+Author[3]
+ Author    : Donald E. Knuth
+  Born     : 1938
+Author[4]
+ Author    : Charles Babbage
+  Born     : 1792
+  Died     : 1871
+
+=== Media Items ===
+MediaItem[0]
+Book       : Combinatorial Algorithms
+  Author   : Donald E. Knuth
+  Year     : 2011
+  Value    : $63.99
+  Sequel   : Mathematical Preliminaries Redux
+  ISBN     : 978-0201038040
+  Pages    : 883
+MediaItem[1]
+Media Item : Computer Ethics : Integrating Across the Curriculum
+  Year     : 2009
+  Value    : $28.27
+MediaItem[2]
+Music      : Computer Games
+  Year     : 2014
+  Value    : $13.98
+  Producer : George Clinton
+  Run Len  : 40.39
+MediaItem[3]
+Book       : Fundamental Algorithms
+  Author   : Donald E. Knuth
+  Year     : 1997
+  Value    : $58.14
+  Sequel   : Seminumerical Algorithms
+  ISBN     : 978-0201896831
+  Pages    : 672
+MediaItem[4]
+Book       : Mathematical Preliminaries Redux
+  Author   : Donald E. Knuth
+MediaItem[5]
+Book       : On the Economy of Machinery and Manufactures
+  Author   : Charles Babbage
+  Year     : 1832
+  In Print : False
+  ISBN     : 1108009107
+  Pages    : 346
+MediaItem[6]
+Book       : Seminumerical Algorithms
+  Author   : Donald E. Knuth
+  Year     : 1997
+  Value    : $65.91
+  ISBN     : 978-0201896848
+  Pages    : 784
+MediaItem[7]
+Book       : The Chip
+  Author   : TR Reid
+  Year     : 2001
+  Value    : $13.61
+  In Print : True
+  ISBN     : 978-0375758287
+  Pages    : 320
+MediaItem[8]
+Video      : The Creation of the Computer
+  Year     : 2005
+  Value    : $35
+  RunTime  : 50 minutes
+MediaItem[9]
+Book       : The Mythical Man-Month
+  Author   : Frederick P. Brooks Jr.
+  Year     : 1975
+  Value    : $28.80
+  In Print : True
+ Element   : The Tar Pit
+  Start    : 3
+  End      : 12
+ Element   : The Mythical Man Month
+  Start    : 13
+  End      : 28
+ Element   : Ten Pounds in a Five-Pound Sack
+  Start    : 97
+  End      : 106
+ Element   : Plan to Throw One Away
+  Start    : 115
+  End      : 126
+ Element   : Hatching a Catastrophe
+  Start    : 153
+  End      : 162
+  ISBN     : 978-0201006506
+  Pages    : 336
+
+Menu [-] : 
+Authors in Memory     = 5 @ 16 Bytes Ea. 
+               Bytes  = 80
+Books in Memory       = 7 @ 96 Bytes Ea. 
+               Bytes  = 672
+Music in Memory       = 1 @ 120 Bytes Ea. 
+               Bytes  = 120
+Video in Memory       = 1 @ 88 Bytes Ea. 
+               Bytes  = 88
+Media Items in Memory = 10 @ 64 Bytes Ea. 
+               Bytes  = 640
+Elements in Memory    = 5 @ 16 Bytes Ea. 
+               Bytes  = 80
+         Total Bytes  = 1104
+
+Menu [-] : 
+Goodbye...
+
