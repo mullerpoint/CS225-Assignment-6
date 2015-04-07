@@ -5,7 +5,10 @@ class MyError :
 	public std::runtime_error
 {
 public:
-	MyError();
+	enum ERRTYPE{
+		You, don, messd, up
+	};
+	MyError(MyError::ERRTYPE);
 	virtual ~MyError();
 };
 

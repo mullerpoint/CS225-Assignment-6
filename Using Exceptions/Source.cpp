@@ -12,13 +12,14 @@
 #include <iostream> //default include
 #include <string> // included to get strings to work
 #include <locale> // included to get locale info for output
-//#include <io.h> // isatty for windows
-#include <unistd.h> // isatty  for linux
+#include <io.h> // isatty for windows
+//#include <unistd.h> // isatty  for linux
 #include <iomanip> // included to make pretty output
 #include <typeinfo> //included to use typeid()
 #include <list> //included for use of list template
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
+#include <exception>
 #endif
 
 //User Defined Class Includes
@@ -28,6 +29,7 @@
 #include "Books.hpp"
 #include "Music.hpp"
 #include "Videos.hpp"
+#include "MyError.hpp"
 
 
 //Gloabal Variables and Defines
@@ -35,8 +37,8 @@
 bool done = false;
 
 //determine if interactive or scripted
-//int interactive = _isatty(_fileno(stdin)); //windowns statement
-int interactive = isatty(STDIN_FILENO); //unix statement
+int interactive = _isatty(_fileno(stdin)); //windowns statement
+//int interactive = isatty(STDIN_FILENO); //unix statement
 
 //define global pointers for media item objects
 std::vector<MediaItems *>items;
@@ -82,40 +84,42 @@ int main()
 
 	std::string itmstr;
 
-	if (interactive)
+	while (!done)
 	{
-
-
-		while (!done)
+		if (ItemNum == -1)
 		{
-			if (ItemNum == -1)
+			itmstr = "-";
+		}
+		else
+		{
+			itmstr = std::to_string(ItemNum);
+		}
+
+		std::cout << std::endl << "Menu [" << itmstr << "]: ";
+		try
+		{
+			if (interactive)
 			{
-				itmstr = "-";
+				std::getline(std::cin, menu_in);
 			}
-			else
+			else if (!interactive)
 			{
-				itmstr = std::to_string(ItemNum);
+				std::cin >> menu_in;
 			}
-			std::cout << std::endl << "Menu [" << itmstr << "]: ";
-			std::getline(std::cin, menu_in);
 			process_menu_in(menu_in[0]);
 		}
-	}
-	else if (!interactive)
-	{
-		while (!done)
+		catch (MyError)
 		{
-			if (ItemNum == -1)
-			{
-				itmstr = "-";
-			}
-			else
-			{
-				itmstr = std::to_string(ItemNum);
-			}
-			std::cout << std::endl << "Menu [" << itmstr << "]: ";
-			std::cin >> menu_in;
-			process_menu_in(menu_in[0]);
+
+		}
+		catch (std::exception)
+		{
+
+		}
+		catch (...)
+		{
+			std::cout << "you should never see this code" << std::endl << "Quiting ..." << std::endl;
+			done = true;
 		}
 	}
 	std::cout << std::endl << "Goodbye" << std::endl;
@@ -821,4 +825,4 @@ std::string trim(const std::string& str, const std::string& whitespace)
 bool alphaSort(MediaItems* lhs, MediaItems* rhs)
 {
 	return (int)(((*lhs).getName())[0]) < (int)(((*rhs).getName())[0]);
-} 
+}
