@@ -1,8 +1,8 @@
 #include <iostream>
-#include <>
+#include <stdexcept>
 
 class MyError :
-	public std::
+	public std::runtime_error
 {
 public:
 	MyError();

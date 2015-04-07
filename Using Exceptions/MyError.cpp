@@ -3,6 +3,7 @@
 
 
 MyError::MyError()
+	: runtime_error("Error in Input")
 {
 }
 
