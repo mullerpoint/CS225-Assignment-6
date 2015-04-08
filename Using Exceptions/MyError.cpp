@@ -1,10 +1,15 @@
 #include <exception>
 #include "MyError.hpp"
 
-
-MyError::MyError(MyError::ERRTYPE)
+MyError::MyError()
 {
-	switch (ERRTYPE)
+
+}
+
+MyError::MyError(MyError::ERRTYPE errorType = You)
+{
+	
+	switch (errorType)
 	{
 	case MyError::You:
 		break;

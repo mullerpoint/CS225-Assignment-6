@@ -62,6 +62,8 @@ int printItems();
 int memUse();
 std::string trim(const std::string&, const std::string& whitespace = " \t");
 bool alphaSort(MediaItems*, MediaItems*);
+bool valueSort(MediaItems*, MediaItems*);
+bool typeSort(MediaItems*, MediaItems*);
 //
 
 
@@ -634,7 +636,37 @@ void process_menu_in(char inchar)
 	//sort items
 	case 'U':
 	{
-		std::sort(std::begin(items), std::end(items), alphaSort);
+		//query user as to what kind of sort they want to do
+		std::cout << "What kind of sort do you want to do : (A)lphabetic, (V)alue, (T)ype" << std::endl;
+		std::string sortType;
+
+		//based on if the session is interactive read in the type
+		if (interactive)
+		{
+			std::getline(std::cin, sortType);
+		}
+		else if (!interactive)
+		{
+			std::cin >> sortType;
+		}
+
+		switch (sortType[0])
+		{
+		case 'V':
+			std::sort(std::begin(items), std::end(items), valueSort);
+			break;
+
+		case 'T':
+			std::sort(std::begin(items), std::end(items), typeSort);
+			break;
+
+		case 'A':
+		default:
+			std::sort(std::begin(items), std::end(items), alphaSort);
+			break;
+		}
+
+
 	}
 	break;
 
@@ -821,8 +853,76 @@ std::string trim(const std::string& str, const std::string& whitespace)
 	return str.substr(strBegin, strRange);
 }
 
-//define less than operator for use with sort function
+//define sort function for alphabetic sort
 bool alphaSort(MediaItems* lhs, MediaItems* rhs)
 {
 	return (int)(((*lhs).getName())[0]) < (int)(((*rhs).getName())[0]);
+}
+
+//define sort function for value sort
+bool valueSort(MediaItems* lhs, MediaItems* rhs)
+{
+	return (int)((*lhs).getPrice()) < (int)((*rhs).getPrice());
+}
+
+//define sort function for type sort
+bool typeSort(MediaItems* lhs, MediaItems* rhs)
+{
+	//mediaitem is 1st in terms of sorting
+	if (typeid(*lhs) == typeid(MediaItems))
+	{
+		return true;
+	}
+
+	//book is 2nd in terms of sorting
+	else if (typeid(*lhs) == typeid(Books))
+	{
+		//if the right side is a media item the book is less
+		if (typeid(*rhs) == typeid(MediaItems))
+		{
+			return false;
+		}
+
+		//but if right side is not a media item left side is greater
+		else
+		{
+			return true;
+		}
+	}
+
+	//music is 3rd in terms of sorting
+	else if (typeid(*lhs) == typeid(Music))
+	{
+		//if the right side is a video then left side is greater
+		if ((typeid(*rhs) == typeid(MediaItems)) || (typeid(*rhs) == typeid(Books)))
+		{
+			return false;
+		}
+
+		//if right side is video or music left side is greater
+		else
+		{
+			return true;
+		}
+	}
+
+	//video is 4th in terms of sorting
+	else if (typeid(*lhs) == typeid(Videos))
+	{
+		//if right side is also a video return true to maintain consistency across all cases
+		if (typeid(*rhs) == typeid(Videos))
+		{
+			return true;
+		}
+
+		//if right side is not video left side is less
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
 }
