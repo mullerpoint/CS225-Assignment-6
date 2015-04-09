@@ -123,7 +123,7 @@ int main()
 		}
 		catch (std::exception)
 		{
-
+			std::cout << "testing 123";
 		}
 		catch (...)
 		{
