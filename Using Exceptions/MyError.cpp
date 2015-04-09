@@ -30,7 +30,7 @@
 
 
 //Constructor
-MyError::MyError(MyError::ERRTYPE Error)
+MyError::MyError(MyError::ERRTYPE Error = MyError::ERRTYPE::UNK_ERROR)
 	: runtime_error(getTypeStr(Error))
 {
 	Error_ = Error;
@@ -65,9 +65,8 @@ std::string MyError::getTypeStr(MyError::ERRTYPE Type)
 		return "Selected Item is of Wrong Class";
 		break;
 	case MyError::UNK_ERROR:
-		return "";
-		break;
 	default:
+		return "Unknown Error";
 		break;
 	}
 }

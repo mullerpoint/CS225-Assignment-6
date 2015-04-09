@@ -645,17 +645,16 @@ void process_menu_in(char inchar)
 	break;
 
 	//Set Sequel index
-	case 'S': //up to here for error corrections
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	case 'S':
 	{
-		if (doesMIExist)
+		if (doesMIExist())
 		{
 			int temp_num;
 			std::cout << "Enter Sequel index number : ";
 			std::cin >> temp_num;
 			std::cin.ignore(1, '\n');
 
-			if (typeid(*items[ItemNum]) == typeid(Books))
+			if (isBook())
 			{
 				Books* book_ptr = (Books*)items[ItemNum];
 				Books* sql_ptr = (Books*)items[temp_num];
@@ -677,70 +676,81 @@ void process_menu_in(char inchar)
 	//Set author pointer
 	case 'T':
 	{
-		int temp_num;
-		std::cout << "Enter Author index number : ";
-		std::cin >> temp_num;
-		std::cin.ignore(1, '\n');
-		(*items[ItemNum]).setAuthor(Authors[temp_num]);
+		if (doesMIExist())
+		{
+			int temp_num;
+			std::cout << "Enter Author index number : ";
+			std::cin >> temp_num;
+			std::cin.ignore(1, '\n');
+			(*items[ItemNum]).setAuthor(Authors[temp_num]);
+		}
 	}
 	break;
 
 	//sort items
 	case 'U':
 	{
-		//query user as to what kind of sort they want to do
-		std::cout << "What kind of sort do you want to do : (A)lphabetic, (V)alue, (T)ype" << std::endl;
-		std::string sortType;
-
-		//based on if the session is interactive read in the type
-		if (interactive)
+		if (doesMIExist())
 		{
-			std::getline(std::cin, sortType);
+			//query user as to what kind of sort they want to do
+			std::cout << "What kind of sort do you want to do : (A)lphabetic, (V)alue, (T)ype" << std::endl;
+			std::string sortType;
+
+			//based on if the session is interactive read in the type
+			if (interactive)
+			{
+				std::getline(std::cin, sortType);
+			}
+			else if (!interactive)
+			{
+				std::cin >> sortType;
+			}
+
+			switch (sortType[0])
+			{
+			case 'V':
+				std::sort(std::begin(items), std::end(items), valueSort);
+				break;
+
+			case 'T':
+				std::sort(std::begin(items), std::end(items), typeSort);
+				break;
+
+			case 'A':
+			default:
+				std::sort(std::begin(items), std::end(items), alphaSort);
+				break;
+			}
+
 		}
-		else if (!interactive)
-		{
-			std::cin >> sortType;
-		}
-
-		switch (sortType[0])
-		{
-		case 'V':
-			std::sort(std::begin(items), std::end(items), valueSort);
-			break;
-
-		case 'T':
-			std::sort(std::begin(items), std::end(items), typeSort);
-			break;
-
-		case 'A':
-		default:
-			std::sort(std::begin(items), std::end(items), alphaSort);
-			break;
-		}
-
-
 	}
 	break;
 
 	// set the item value ($)
 	case 'V':
 	{
-		double new_price;
-		std::cout << "Enter Media Item value : ";
-		std::cin >> new_price;
-		std::cin.ignore(10000, '\n');
-		(*items[ItemNum]).setPrice(new_price);
+		if (doesMIExist())
+		{
+			double new_price;
+			std::cout << "Enter Media Item value : ";
+			std::cin >> new_price;
+			std::cin.ignore(10000, '\n');
+			(*items[ItemNum]).setPrice(new_price);
+		}
 	}
 	break;
 
 	// set the item publication year
 	case 'Y':
 	{
-		int new_year;
-		std::cout << "Enter Media Item publication year : ";
-		std::cin >> new_year;
-		std::cin.ignore(10000, '\n');
-		(*items[ItemNum]).setPubYear(new_year);
+		if (doesMIExist())
+		{
+			int new_year;
+			std::cout << "Enter Media Item publication year : ";
+			std::cin >> new_year;
+			std::cin.ignore(10000, '\n');
+			(*items[ItemNum]).setPubYear(new_year);
+		}
 	}
 	break;
 
@@ -1040,7 +1050,7 @@ bool isBook()
 	}
 }
 
-bool isVideo(MediaItems *ptr)
+bool isVideo()
 {
 	if (typeid(*(items[ItemNum])) == typeid(Videos))
 		return 1;
@@ -1050,7 +1060,7 @@ bool isVideo(MediaItems *ptr)
 	}
 }
 
-bool isMusic(MediaItems *ptr)
+bool isMusic()
 {
 	if (typeid(*(items[ItemNum])) == typeid(Music))
 		return 1;
