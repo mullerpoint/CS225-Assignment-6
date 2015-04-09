@@ -9,6 +9,7 @@
 #ifndef MUSIC_CLASS_IMPL_H_
 #define MUSIC_CLASS_IMPL_H_
 
+//Header files standard libraries and classes
 #ifndef MEDIA_DEPENDENCIES_CORE_H_
 #define MEDIA_DEPENDENCIES_CORE_H_
 #include <iostream> //default include
@@ -21,6 +22,7 @@
 #include <list> //included for use of list template
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
+#include <stdexcept> // include to derive from runtime_error
 #endif
 
 // include header file

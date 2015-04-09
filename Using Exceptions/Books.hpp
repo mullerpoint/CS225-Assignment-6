@@ -14,7 +14,7 @@ private:
 	int pages; //pages in the book
 	bool in_print; // if the book is still in print or not
 	bool in_print_def; // if the in_print variable has been set
-	std::string sequel_; // pointer to the sequel book item
+	//std::string sequel_; // pointer to the sequel book item
 
 
 public:

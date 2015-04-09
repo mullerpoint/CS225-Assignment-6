@@ -22,6 +22,7 @@
 #include <list> //included for use of list template
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
+#include <stdexcept> // include to derive from runtime_error
 #endif
 
 // include header file

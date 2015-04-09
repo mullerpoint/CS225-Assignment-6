@@ -13,7 +13,7 @@ private:
 	std::string director_; //name_ of the director of the video
 	double runTime_; //runtime of the video
 
-	std::string sequel_; //pointer to the sequel video item
+	//std::string sequel_; //pointer to the sequel video item
 
 public:
 	//Constructor Destructor

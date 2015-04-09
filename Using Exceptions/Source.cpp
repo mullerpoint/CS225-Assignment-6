@@ -19,7 +19,7 @@
 #include <list> //included for use of list template
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
-#include <exception>
+#include <stdexcept> // include to derive from runtime_error
 #endif
 
 //User Defined Class Includes
@@ -64,6 +64,13 @@ std::string trim(const std::string&, const std::string& whitespace = " \t");
 bool alphaSort(MediaItems*, MediaItems*);
 bool valueSort(MediaItems*, MediaItems*);
 bool typeSort(MediaItems*, MediaItems*);
+bool doesMIExist();
+bool doesAuthExist();
+bool limitCheck(int, int, int);
+bool limitCheck(int, int);
+bool isBook();
+bool isVideo();
+bool isMusic();
 //
 
 
@@ -112,7 +119,7 @@ int main()
 		}
 		catch (MyError)
 		{
-
+			std::cout << "testing";
 		}
 		catch (std::exception)
 		{
@@ -120,8 +127,8 @@ int main()
 		}
 		catch (...)
 		{
-			std::cout << "you should never see this code" << std::endl << "Quiting ..." << std::endl;
-			done = true;
+			std::cout << "If you see this you have broken the code" << std::endl << "Quiting ..." << std::endl;
+			std::terminate();
 		}
 	}
 	std::cout << std::endl << "Goodbye" << std::endl;
@@ -197,10 +204,14 @@ void process_menu_in(char inchar)
 	//delete the current item
 	case '-':
 	{
-		delete items[ItemNum];
-		items.erase(items.begin() + (ItemNum));
-		std::cout << "Item " << (ItemNum) << " deleted; Plese select a new item before continuing." << std::endl;
-		(ItemNum) = -1;
+		if (doesMIExist())
+		{
+			delete items[ItemNum];
+			items.erase(items.begin() + (ItemNum));
+			std::cout << "Item " << (ItemNum) << " deleted; Plese select a new item before continuing." << std::endl;
+			(ItemNum) = -1;
+		}
+
 	}
 	break;
 
@@ -215,37 +226,34 @@ void process_menu_in(char inchar)
 	// set a custom item number between 0-items.size()
 	case '#':
 	{
-		//declare temp vaiable and read in user value
-		unsigned int new_itemNum;
-		std::cout << "Enter new item number : ";
-		std::cin >> new_itemNum;
-
-		//validate input
-		if ((new_itemNum >= 0) && (new_itemNum <= (items.size())))
+		if (doesMIExist())
 		{
-			(ItemNum) = new_itemNum;
-		}
-		else{
-			std::cout << "Please enter a valid number beteen 0-" << items.size();
-		}
 
-		//clear buffer for next input
-		std::cin.ignore(10000, '\n');
-		std::cout << std::endl;
+			//declare temp vaiable and read in user value
+			unsigned int new_itemNum;
+			std::cout << "Enter new item number : ";
+			std::cin >> new_itemNum;
+
+			//validate input
+			if (limitCheck(new_itemNum, 0, (items.size()-1)))
+			{
+				(ItemNum) = new_itemNum;
+			}
+
+			//clear buffer for next input
+			std::cin.ignore(10000, '\n');
+			std::cout << std::endl;
+		}
 	}
 	break;
 
 	// clear item menu option
 	case '0':
 	{
-		if (ItemNum == -1)
+		if (doesMIExist())
 		{
-			std::cout << "Error: You cannont delete an empty vector" << std::endl;
-		}
-		else
-		{
-			(*items[ItemNum]).clear();
-			std::cout << "Item " << (ItemNum) << " Cleared" << std::endl;
+				(*items[ItemNum]).clear();
+				std::cout << "Item " << (ItemNum) << " Cleared" << std::endl;
 		}
 	}
 	break;
@@ -253,7 +261,7 @@ void process_menu_in(char inchar)
 	//set media item duration or time
 	case 'B':
 	{
-		if (!(typeid(items[ItemNum]) == typeid(Books) || typeid(items[ItemNum]) == typeid(MediaItems)))
+		if (isMusic() || isVideo())
 		{
 			double runTime;
 			std::cout << "Please enter the run time : ";
@@ -272,7 +280,8 @@ void process_menu_in(char inchar)
 		}
 		else
 		{
-			std::cout << "Error : you cannot set the runTime on a Book or Media Item object" << std::endl;
+			MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+			throw(oops);
 		}
 	}
 	break;
@@ -320,62 +329,68 @@ void process_menu_in(char inchar)
 	// display item menu option
 	case 'D':
 	{
-		std::cout << std::endl << "Item [" << (ItemNum) << "] :" << std::endl;
-		(*items[ItemNum]).toCout();
+		if (doesMIExist())
+		{
+			std::cout << std::endl << "Item [" << (ItemNum) << "] :" << std::endl;
+			(*items[ItemNum]).toCout();
+		}
 	}
 	break;
 
 	//Create an element object in the media item object
 	case 'E':
 	{
-		int num, start, end;
-		std::string name;
-
-		if (interactive)
+		if (doesMIExist())
 		{
-			//get start
-			std::cout << "Please enter the Element name_ : ";
-			std::getline(std::cin, name);
+			int num, start, end;
+			std::string name;
 
-			//get end
-			std::cout << "Please enter the Element start, Zero(0) for none : ";
-			std::cin >> start;
-			std::cin.ignore(1, '\n');
+			if (interactive)
+			{
+				//get start
+				std::cout << "Please enter the Element name_ : ";
+				std::getline(std::cin, name);
 
-			//get end
-			std::cout << "Please enter the Element end, Zero(0) for none : ";
-			std::cin >> end;
-			std::cin.ignore(1, '\n');
+				//get end
+				std::cout << "Please enter the Element start, Zero(0) for none : ";
+				std::cin >> start;
+				std::cin.ignore(1, '\n');
+
+				//get end
+				std::cout << "Please enter the Element end, Zero(0) for none : ";
+				std::cin >> end;
+				std::cin.ignore(1, '\n');
+
+			}
+			else //scripted
+			{
+				//get start
+				std::cin >> start;
+				std::cin.ignore(1, '\n');
+
+				//get end
+				std::cin >> end;
+				std::cin.ignore(1, '\n');
+
+				//get name
+				std::getline(std::cin, name);
+				//(*Authors[AuthNum]).setName(name);
+			}
+
+			//clear leading whitespace
+			name = trim(name);
+
+			//pass all acquired data to the add element funciton
+			(*items[ItemNum]).addElement(start, end, name, num = 0);
 
 		}
-		else //scripted
-		{
-			//get start
-			std::cin >> start;
-			std::cin.ignore(1, '\n');
-
-			//get end
-			std::cin >> end;
-			std::cin.ignore(1, '\n');
-
-			//get name
-			std::getline(std::cin, name);
-			//(*Authors[AuthNum]).setName(name);
-		}
-
-		//clear leading whitespace
-		name = trim(name);
-
-		//pass all acquired data to the add element funciton
-		(*items[ItemNum]).addElement(start, end, name, num = 0);
-
 	}
 	break;
 
 	//set music/video Producer/director respectivly
 	case 'F':
 	{
-		if (!(typeid(*items[ItemNum]) == typeid(Books) || typeid(*items[ItemNum]) == typeid(MediaItems)))
+		if (isMusic()|| isVideo())
 		{
 			std::string executive;
 			std::cout << "Please enter the Producer or director : ";
@@ -401,7 +416,9 @@ void process_menu_in(char inchar)
 		}
 		else
 		{
-			std::cout << "Error : you cannot set the Producer or director on a Book or Media Item object" << std::endl;
+
+			MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+			throw(oops);
 		}
 	}
 	break;
@@ -409,16 +426,24 @@ void process_menu_in(char inchar)
 	// set the item in print status
 	case 'I':
 	{
-		if (typeid(*items[ItemNum]) == typeid(Books))
+		if (doesMIExist())
 		{
-			//create a simple variable that points to cast version of the object
-			Books* book_ptr = (Books*)items[ItemNum];
+			if (isBook())
+			{
+				//create a simple variable that points to cast version of the object
+				Books* book_ptr = (Books*)items[ItemNum];
 
-			bool printStatus;
-			std::cout << "Is the book still in print (0/1) : ";
-			std::cin >> printStatus;
-			std::cin.ignore(10000, '\n');
-			(*book_ptr).setInPrint(printStatus);
+				bool printStatus;
+				std::cout << "Is the book still in print (0/1) : ";
+				std::cin >> printStatus;
+				std::cin.ignore(10000, '\n');
+				(*book_ptr).setInPrint(printStatus);
+			}
+			else
+			{
+				MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+				throw(oops);
+			}
 		}
 	}
 	break;
@@ -426,20 +451,24 @@ void process_menu_in(char inchar)
 	//set Book ISBN
 	case 'J':
 	{
-		if (typeid(*items[ItemNum]) == typeid(Books))
+		if (doesMIExist())
 		{
-			//create a simple variable that points to cast version of the object
-			Books* book_ptr = (Books*)items[ItemNum];
+			if (isBook())
+			{
+				//create a simple variable that points to cast version of the object
+				Books* book_ptr = (Books*)items[ItemNum];
 
-			std::string isbn;
-			std::cout << "Please enter the Book ISBN :";
-			std::getline(std::cin, isbn);
-			isbn = trim(isbn);
-			(*book_ptr).setISBN(isbn);
-		}
-		else
-		{
-			std::cout << "Error : non-book item cannot have an ISBN";
+				std::string isbn;
+				std::cout << "Please enter the Book ISBN :";
+				std::getline(std::cin, isbn);
+				isbn = trim(isbn);
+				(*book_ptr).setISBN(isbn);
+			}
+			else
+			{
+				MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+				throw(oops);
+			}
 		}
 	}
 	break;
@@ -447,42 +476,50 @@ void process_menu_in(char inchar)
 	//set Music GENRE
 	case 'K':
 	{
-		if (typeid(*items[ItemNum]) == typeid(Music))
+		if (doesMIExist())
 		{
-			//create a simple variable that points to cast version of the object
-			Music* music_ptr = (Music*)items[ItemNum];
-
-			//get the GENRE string from input
-			std::string GenreStr;
-			std::cout << "Please enter the GENRE : ";
-			std::getline(std::cin, GenreStr);
-			for (auto & c : GenreStr) c = toupper(c); //convert to uppercase
-
-			//create a bool variable to determine if the GENRE has been set
-			bool GENRESet = false;
-
-			//variable to keep track of type
-			Music::GENRE type = Music::GENRE::ROC;
-
-			//for loop to try find a match to one of the defined GENREs
-			while ((type != Music::GENRE::END) && (GENRESet == false))
+			if (isMusic())
 			{
-				//get the token for searching the GENRE string
-				std::string typeStr = (*music_ptr).dispGENRESht(type);
+				//create a simple variable that points to cast version of the object
+				Music* music_ptr = (Music*)items[ItemNum];
 
-				//if the token matches something in the GENRE string set the object to the GENRE
-				if (GenreStr.find(typeStr) != std::string::npos)
+				//get the GENRE string from input
+				std::string GenreStr;
+				std::cout << "Please enter the GENRE : ";
+				std::getline(std::cin, GenreStr);
+				for (auto & c : GenreStr) c = toupper(c); //convert to uppercase
+
+				//create a bool variable to determine if the GENRE has been set
+				bool GENRESet = false;
+
+				//variable to keep track of type
+				Music::GENRE type = Music::GENRE::ROC;
+
+				//for loop to try find a match to one of the defined GENREs
+				while ((type != Music::GENRE::END) && (GENRESet == false))
 				{
-					(*music_ptr).setGENRE(type);
-					GENRESet = true;
-				} //if GenreStr
-				type = Music::GENRE(type + 1);
-			}//while
-			if (GENRESet == false)
+					//get the token for searching the GENRE string
+					std::string typeStr = (*music_ptr).dispGENRESht(type);
+
+					//if the token matches something in the GENRE string set the object to the GENRE
+					if (GenreStr.find(typeStr) != std::string::npos)
+					{
+						(*music_ptr).setGENRE(type);
+						GENRESet = true;
+					} //if GenreStr
+					type = Music::GENRE(type + 1);
+				}//while
+				if (GENRESet == false)
+				{
+					(*music_ptr).setGENRE(Music::GENRE::OTHER);
+				}
+			} //if isMusic()
+			else
 			{
-				(*music_ptr).setGENRE(Music::GENRE::OTHER);
+				MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+				throw(oops);
 			}
-		} //if type id
+		}
 	}//case
 	break;
 
@@ -560,26 +597,37 @@ void process_menu_in(char inchar)
 		// enter item name menu option
 	case 'N':
 	{
-		std::string new_name;
-		std::cout << "Enter Media Item Title : ";
-		std::getline(std::cin, new_name);
-		new_name = trim(new_name);
-		(*items[ItemNum]).setName(new_name);
+		if (doesMIExist())
+		{
+			std::string new_name;
+			std::cout << "Enter Media Item Title : ";
+			std::getline(std::cin, new_name);
+			new_name = trim(new_name);
+			(*items[ItemNum]).setName(new_name);
+		}
 	}
 	break;
 
 	// enter item page count menu option
 	case 'P':
 	{
-		if (typeid((*items[ItemNum])) == typeid(Books))
+		if (doesMIExist())
 		{
-			Books* book_ptr = (Books*)items[ItemNum];
+			if (isBook())
+			{
+				Books* book_ptr = (Books*)items[ItemNum];
 
-			int new_pages;
-			std::cout << "Enter Media Item Pages : ";
-			std::cin >> new_pages;
-			(*book_ptr).setPages(new_pages);
-			std::cin.ignore(10000, '\n');
+				int new_pages;
+				std::cout << "Enter Media Item Pages : ";
+				std::cin >> new_pages;
+				(*book_ptr).setPages(new_pages);
+				std::cin.ignore(10000, '\n');
+			}
+			else
+			{
+				MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+				throw(oops);
+			}
 		}
 	}
 	break;
@@ -597,28 +645,32 @@ void process_menu_in(char inchar)
 	break;
 
 	//Set Sequel index
-	case 'S':
+	case 'S': //up to here for error corrections
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	{
-		int temp_num;
-		std::cout << "Enter Sequel index number : ";
-		std::cin >> temp_num;
-		std::cin.ignore(1, '\n');
-
-		if (typeid(*items[ItemNum]) == typeid(Books))
+		if (doesMIExist)
 		{
-			Books* book_ptr = (Books*)items[ItemNum];
-			Books* sql_ptr = (Books*)items[temp_num];
+			int temp_num;
+			std::cout << "Enter Sequel index number : ";
+			std::cin >> temp_num;
+			std::cin.ignore(1, '\n');
 
-			(*book_ptr).setSequel(sql_ptr);
+			if (typeid(*items[ItemNum]) == typeid(Books))
+			{
+				Books* book_ptr = (Books*)items[ItemNum];
+				Books* sql_ptr = (Books*)items[temp_num];
+
+				(*book_ptr).setSequel(sql_ptr);
+			}
+			else
+			{
+				Videos* video_ptr = (Videos*)items[ItemNum];
+				Videos* sql_ptr = (Videos*)items[temp_num];
+
+				(*video_ptr).setSequel(sql_ptr);
+			}
+
 		}
-		else
-		{
-			Videos* video_ptr = (Videos*)items[ItemNum];
-			Videos* sql_ptr = (Videos*)items[temp_num];
-
-			(*video_ptr).setSequel(sql_ptr);
-		}
-
 	}
 	break;
 
@@ -924,5 +976,86 @@ bool typeSort(MediaItems* lhs, MediaItems* rhs)
 	else
 	{
 		return false;
+	}
+}
+
+
+bool doesMIExist()
+{
+	if (items.size() > 0)
+	{
+		return 1;
+	}
+	else
+	{
+		MyError oops(MyError::ERRTYPE::NOT_EXIST);
+		throw(oops);
+		return 0;
+	}
+}
+
+bool doesAuthExist()
+{
+	if (Authors.size() > 0)
+		return 1;
+	else
+	{
+		MyError oops(MyError::ERRTYPE::NOT_EXIST);
+		throw(oops);
+		return 0;
+	}
+}
+
+bool limitCheck(int user_input, int low, int high)
+{
+	if (user_input>low && user_input<high)
+		return 1;
+	else
+	{
+		MyError oops(MyError::ERRTYPE::OUT_OF_BOUNDS);
+		throw(oops);
+		return 0;
+	}
+}
+
+bool limitCheck(int user_input, int low)
+{
+	if (user_input>low)
+		return 1;
+	else
+	{
+		MyError oops(MyError::ERRTYPE::OUT_OF_BOUNDS);
+		throw(oops);
+		return 0;
+	}
+}
+
+bool isBook()
+{
+	if (typeid(*(items[ItemNum])) == typeid(Books))
+		return 1;
+	else
+	{
+		return 0;
+	}
+}
+
+bool isVideo(MediaItems *ptr)
+{
+	if (typeid(*(items[ItemNum])) == typeid(Videos))
+		return 1;
+	else
+	{
+		return 0;
+	}
+}
+
+bool isMusic(MediaItems *ptr)
+{
+	if (typeid(*(items[ItemNum])) == typeid(Music))
+		return 1;
+	else
+	{
+		return 0;
 	}
 }
