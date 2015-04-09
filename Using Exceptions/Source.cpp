@@ -569,6 +569,8 @@ void process_menu_in(char inchar)
 			else
 			{
 				MyError oops(MyError::ERRTYPE::WRONG_CLASS);
+				std::cin.clear();
+				std::cin.ignore(10000, '\n');
 				throw(oops);
 			}
 		}
@@ -1101,7 +1103,7 @@ bool doesAuthExist()
 
 bool limitCheck(int user_input, int low, int high)
 {
-	if (user_input>low && user_input<high)
+	if (user_input>=low && user_input<=high)
 		return 1;
 	else
 	{
@@ -1113,7 +1115,7 @@ bool limitCheck(int user_input, int low, int high)
 
 bool limitCheck(int user_input, int low)
 {
-	if (user_input>low)
+	if (user_input>=low)
 		return 1;
 	else
 	{
