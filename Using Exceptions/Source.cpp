@@ -117,17 +117,22 @@ int main()
 			}
 			process_menu_in(menu_in[0]);
 		}
-		catch (MyError)
+		catch (MyError &err)
 		{
-			std::cout << "testing";
+			/*
+			std::cin.clear();
+			std::cin.ignore();*/ 
+			std::cout << "Error: " << err.getTypeStr(err.getType()) << std::endl;
 		}
-		catch (std::exception)
+		catch (std::exception &err)
 		{
-			std::cout << "testing 123";
+			std::cin.clear();
+			std::cin.ignore(10000, '\n');
+			std::cout << "Error: " << err.what() << std::endl;
 		}
 		catch (...)
 		{
-			std::cout << "If you see this you have broken the code" << std::endl << "Quiting ..." << std::endl;
+			std::cout << "Error: If you see this you have broken the code" << std::endl << "Quiting ..." << std::endl;
 			std::terminate();
 		}
 	}
@@ -206,10 +211,13 @@ void process_menu_in(char inchar)
 	{
 		if (doesMIExist())
 		{
-			delete items[ItemNum];
-			items.erase(items.begin() + (ItemNum));
-			std::cout << "Item " << (ItemNum) << " deleted; Plese select a new item before continuing." << std::endl;
-			(ItemNum) = -1;
+			if (limitCheck(ItemNum, 0, (items.size() - 1)))
+			{
+				delete items[ItemNum];
+				items.erase(items.begin() + (ItemNum));
+				std::cout << "Item " << (ItemNum) << " deleted; Plese select a new item before continuing." << std::endl;
+				(ItemNum) = -1;
+			}
 		}
 
 	}
@@ -233,7 +241,11 @@ void process_menu_in(char inchar)
 			unsigned int new_itemNum;
 			std::cout << "Enter new item number : ";
 			std::cin >> new_itemNum;
-
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			//validate input
 			if (limitCheck(new_itemNum, 0, (items.size()-1)))
 			{
@@ -266,6 +278,11 @@ void process_menu_in(char inchar)
 			double runTime;
 			std::cout << "Please enter the run time : ";
 			std::cin >> runTime;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			if (typeid(items[ItemNum]) == typeid(Music))
 			{
 				Music* music_ptr = (Music*)items[ItemNum];
@@ -306,11 +323,21 @@ void process_menu_in(char inchar)
 
 			std::cout << "Please enter the Authors birth year (yyyy), Zero(0) for none :";
 			std::cin >> born;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			(*Authors[AuthNum]).setBirth(born);
 			std::cin.ignore(10000, '\n');
 
 			std::cout << "Please enter the Authors death year (yyyy), Zero(0) for none :";
 			std::cin >> died;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			(*Authors[AuthNum]).setDeath(died);
 			std::cin.ignore(10000, '\n');
 
@@ -348,17 +375,27 @@ void process_menu_in(char inchar)
 			if (interactive)
 			{
 				//get start
-				std::cout << "Please enter the Element name_ : ";
+				std::cout << "Please enter the Element name : ";
 				std::getline(std::cin, name);
 
 				//get end
 				std::cout << "Please enter the Element start, Zero(0) for none : ";
 				std::cin >> start;
+				if (std::cin.fail())
+				{
+					std::invalid_argument badIO("Bad Input");
+					throw(badIO);
+				}
 				std::cin.ignore(1, '\n');
 
 				//get end
 				std::cout << "Please enter the Element end, Zero(0) for none : ";
 				std::cin >> end;
+				if (std::cin.fail())
+				{
+					std::invalid_argument badIO("Bad Input");
+					throw(badIO);
+				}
 				std::cin.ignore(1, '\n');
 
 			}
@@ -366,10 +403,20 @@ void process_menu_in(char inchar)
 			{
 				//get start
 				std::cin >> start;
+				if (std::cin.fail())
+				{
+					std::invalid_argument badIO("Bad Input");
+					throw(badIO);
+				}
 				std::cin.ignore(1, '\n');
 
 				//get end
 				std::cin >> end;
+				if (std::cin.fail())
+				{
+					std::invalid_argument badIO("Bad Input");
+					throw(badIO);
+				}
 				std::cin.ignore(1, '\n');
 
 				//get name
@@ -436,6 +483,11 @@ void process_menu_in(char inchar)
 				bool printStatus;
 				std::cout << "Is the book still in print (0/1) : ";
 				std::cin >> printStatus;
+				if (std::cin.fail())
+				{
+					std::invalid_argument badIO("Bad Input");
+					throw(badIO);
+				}
 				std::cin.ignore(10000, '\n');
 				(*book_ptr).setInPrint(printStatus);
 			}
@@ -620,6 +672,11 @@ void process_menu_in(char inchar)
 				int new_pages;
 				std::cout << "Enter Media Item Pages : ";
 				std::cin >> new_pages;
+				if (std::cin.fail())
+				{
+					std::invalid_argument badIO("Bad Input");
+					throw(badIO);
+				}
 				(*book_ptr).setPages(new_pages);
 				std::cin.ignore(10000, '\n');
 			}
@@ -652,7 +709,15 @@ void process_menu_in(char inchar)
 			int temp_num;
 			std::cout << "Enter Sequel index number : ";
 			std::cin >> temp_num;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			std::cin.ignore(1, '\n');
+
+			//validate input
+			limitCheck(temp_num, 0, (items.size() - 1));
 
 			if (isBook())
 			{
@@ -676,12 +741,20 @@ void process_menu_in(char inchar)
 	//Set author pointer
 	case 'T':
 	{
-		if (doesMIExist())
+		if (doesAuthExist())
 		{
 			int temp_num;
 			std::cout << "Enter Author index number : ";
 			std::cin >> temp_num;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			std::cin.ignore(1, '\n');
+			//validate input
+			limitCheck(temp_num, 0, (Authors.size() - 1));
+
 			(*items[ItemNum]).setAuthor(Authors[temp_num]);
 		}
 	}
@@ -693,7 +766,7 @@ void process_menu_in(char inchar)
 		if (doesMIExist())
 		{
 			//query user as to what kind of sort they want to do
-			std::cout << "What kind of sort do you want to do : (A)lphabetic, (V)alue, (T)ype" << std::endl;
+			std::cout << "What kind of sort do you want to do : (A)lphabetic, (V)alue, (T)ype";
 			std::string sortType;
 
 			//based on if the session is interactive read in the type
@@ -734,6 +807,11 @@ void process_menu_in(char inchar)
 			double new_price;
 			std::cout << "Enter Media Item value : ";
 			std::cin >> new_price;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			std::cin.ignore(10000, '\n');
 			(*items[ItemNum]).setPrice(new_price);
 		}
@@ -748,6 +826,11 @@ void process_menu_in(char inchar)
 			int new_year;
 			std::cout << "Enter Media Item publication year : ";
 			std::cin >> new_year;
+			if (std::cin.fail())
+			{
+				std::invalid_argument badIO("Bad Input");
+				throw(badIO);
+			}
 			std::cin.ignore(10000, '\n');
 			(*items[ItemNum]).setPubYear(new_year);
 		}
