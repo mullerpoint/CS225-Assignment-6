@@ -1,0 +1,123 @@
+r
+* 
+// Authors
+c 1944 0 George Walton Lucas, Jr.
+// Movies
++ v
+n Star Wars: A New Hope
+y 1977
+t 0
+f George Lucas
+e 1 4 Imperial Boarding Party
+e 36 39 The Death Star
+e 86 89 Back to the Ship
+p 321
+v 9.99
+// s 41
++ v
+n The Empire Strikes Back
+y 1980
+f Irvin Kershner
+c 0 0 Leigh Brackett
+t 1
+s 12
+v 7.99
+// Return of Jedi
++ v
+n Return of the Jedi
+y 1983
+f Richard Marquand
+t 0
+v 12.98
+// Phantom Menace
++ v
+n Name 2 b replaced
+y 1999
+f George Lucas
+t 0
+n The Phantom Menace
+v 6.51
+// Attack of the Clones
++ v
+n Attack of the Clones
+y 2002
+f George Lucas
+v 2.98
+// s 45
++ v
+n Revenge of the Sith
+y 2005
+f George Lucas
+t 0
+k Classic
+v 14.98
+// s 40
++ m
+n The Music of John Williams: The Definitive Collection
+y 2012
+f Prague Philharmonic Orchestra
+v 50.98
+k Classical
++ b
+n Heir to the Jedi: Star Wars
+v 20.52
+y 2015
+p 304
+c 0 0 Kevin Hearne
+t 2
+j 978-0345544858
+// Set Sequels
+# 0
+s 1
+# 1
+s 2
+# 3
+s 4
+# 4
+s 5
+# 5
+s 0
+// Output
+*
+// Sort by Value
+u value
+// Output
+*
+r
+// Add Items
++ i
+n Star Wars: Darth Maul: Son of Dathomir
+v 14.81
+y 2014
+k Comic Book
+//
++ i
+n Star Wars Volume 1: In the Shadow of Yavin
+v 14.08
+y 2013
+p 21
+//
++ b
+n Star Wars: Jedi Academy, Return of the Padawan
+c 0 0 Jeffrey Brown
+t 3
+v 7.99
+y 2014
+p 48
+//
++ b
+n Star Wars: Blood Ties - A Tale of Jango and Boba Fett
+c Tom Taylor
+t 4
+v 6.51
+y 2011
+p 64
+// Sort by Type
+u type
+// Output
+*
+r
+// q
+// q
+// q
+

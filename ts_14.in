@@ -1,0 +1,180 @@
+r
+*
+//
++ m
+n Stardust
+c 1933 0 Willie Nelson
+t 0
+v 9.99
+k country
+//
++ m
+n Back in Black
+c 0 0 AC/DC
+t 1
+v 7.99
+k Rock
+y 1994
+//
++ m
+n Big Daddy Multitude
+c 0 0 Mustard Plug
+y 1993
+t 2
+k Ska
+v 8.99  
+//
++ m
+n Natty Dread
+c 1945 1981 Bob Marley
+y 2001
+t 3
+k Reggae
+v 12.98
+e 0 0 Rebel Music
+e 0 0 No Woman No Cry
+e 0 0 Revolution
+//
++ m
+n Aphex Twins
+k Techno
+v 4.44
+//
++ m
+n Nobodys Smiling
+c 1972 0 Lonnie Lynn
+t 4
+k HipHop
+v 9.87
+y 2014
+//
++ m
+n Rockabilly Riot!
+c 1959 0 Brian Setzer
+t 5
+v 11.99
+y 2014
+k Rockabilly
+// Polka
++ m
+n 16 Most Requested Polkas
+y 2008
+v 4.99
+k Polka
+// 
++ m
+n Shadows in the Night
+c 1941 0 Bob Dylan
+t 6
+y 2015
+//
++ m
+n The Harder They Come
+y 1972
+f Perry Henzell
+v 7.58
+//
++ m
+n Still the Same Ole Me
+k Country/Western
+y 1969
+v 0.99
+c 1931 2013 George Jones
+t 7
+//
++ i
+n Final Fantasy XIV: A Realm Reborn
+y 2013
+v 19.99
+c 2003 0 Square Enix
+t 8
+//
++ i
+n Lightning Returns: Final Fantasy XIII
+y 2014
+v 19.51
+t 8
+//
++ i
+n Final Fantasy IV
+y 2008
+v 37.45
+t 8
+//
++ i
+n Final Fantasy XV
+y 2015
+v 59.96
+t 8
+//
++ i
+n Final Fantasy XII : Revenant Wings
+v 74.99
+t 8
+y 2006
+p 16
+//
++ v
+n Hear my Train a Comin'
+v 10.99
+y 2013
+b 190
+c 1942 1970 Jimi Hendrix
+t 9
+k Rock
+//
++ b
+n Hammer of the Gods
+v 11.61
+p 408
+y 2001
+c 0 0 Stephen Davis
+t 10
+k Rock
+j 978-0425182130
+//
++ b
+n No One Here Gets Out Alive
+j 978-0446602280
+p 396
+y 1995
+v 12.39
+c 0 0 Danny Sugarman
+t 11
+// Sequels
+# 12
+s 11
+# 11
+s 14
+# 15
+s 12
+// Output
+r
+*
+l
+// Sort
+u type
+// Output
+*
+// Deletions
+# 17
+-
+0
+# 11
+-
+-
+# 7
+0
+# 9
+k Country
+# 11
+k Reggae
+
+// Output
+r
+*
+l
+// Quit
+q
+q
+q

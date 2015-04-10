@@ -114,6 +114,11 @@ int main()
 			else if (!interactive)
 			{
 				std::cin >> menu_in;
+				if (std::cin.eof())
+				{
+					std::cout << "Error : End of File reached" << std::endl;
+					std::terminate();
+				}
 			}
 			process_menu_in(menu_in[0]);
 		}

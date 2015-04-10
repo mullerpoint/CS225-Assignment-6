@@ -32,14 +32,6 @@ public:
 private:
 	ERRTYPE Error_;
 public:
-	/*MyError(MyError::ERRTYPE = UNK_ERROR) : runtime_error("testing")
-	{
-		
-	};*/
-	/*explicit MyError(const ERRTYPE& error_message) : 
-		Error_(UNK_ERROR){}*/
-	//MyError
-	//MyError(MyError::ERRTYPE = UNK_ERROR);
 	MyError(ERRTYPE);
 	ERRTYPE getType();
 	std::string getTypeStr(ERRTYPE);
