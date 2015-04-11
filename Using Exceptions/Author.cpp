@@ -23,10 +23,12 @@
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
+#include <cctype> //for isalpha()
 #endif
 
 // include header file
 #include "Author.hpp"
+#include "MyError.hpp"
 
 
 //Defines for default vaules
@@ -159,9 +161,21 @@ std::ostream& operator<<(std::ostream &out, Author &Auth)
 
 std::istream& operator>>(std::istream &in, Author &Auth)
 {
+	char temp;
 	int born, died;
 	std::string name;
+	
+	in >> temp;
 
+	if (std::isalpha(temp))
+	{
+		std::invalid_argument badIO("Bad Input");
+		throw(badIO);
+	}
+	else
+	{
+		in.unget();
+	}
 	in >> born;
 	Auth.setBirth(born);
 	std::cin.ignore(1, '\n');

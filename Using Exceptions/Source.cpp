@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Gary Muller
+// Gary Muller, Ian Powers
 // Spring 2015
-// CS 225 Assignment 5
+// CS 225 Assignment 6
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -20,6 +20,7 @@
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
+#include <cctype> //for isalpha()
 #endif
 
 //User Defined Class Includes
@@ -93,7 +94,7 @@ int main()
 
 	std::string itmstr;
 
-	while (!done)
+	while (!done && !std::cin.eof())
 	{
 		if (ItemNum == -1)
 		{
@@ -117,22 +118,20 @@ int main()
 				if (std::cin.eof())
 				{
 					std::cout << "Error : End of File reached" << std::endl;
-					std::terminate();
 				}
 			}
 			process_menu_in(menu_in[0]);
 		}
 		catch (MyError &err)
 		{
-			/*
 			std::cin.clear();
-			std::cin.ignore();*/ 
+			std::cin.ignore(10000, '\n'); 
 			std::cout << "Error: " << err.getTypeStr(err.getType()) << std::endl;
 		}
 		catch (std::exception &err)
 		{
 			std::cin.clear();
-			std::cin.ignore(10000, '\n');
+			//std::cin.ignore(10000, '\n');
 			std::cout << "Error: " << err.what() << std::endl;
 		}
 		catch (...)
@@ -269,8 +268,11 @@ void process_menu_in(char inchar)
 	{
 		if (doesMIExist())
 		{
+			if (limitCheck(ItemNum, 0, (items.size() - 1)))
+			{
 				(*items[ItemNum]).clear();
 				std::cout << "Item " << (ItemNum) << " Cleared" << std::endl;
+			}
 		}
 	}
 	break;
@@ -350,9 +352,10 @@ void process_menu_in(char inchar)
 		}
 		else //scripted
 		{
-			std::cin >> (*Authors[AuthNum]);
+			
+				std::cin >> (*Authors[AuthNum]);
 			//std::cin.ignore(256, '\n');
-
+			
 			AuthNum = AuthNum + 1;
 		}
 	}

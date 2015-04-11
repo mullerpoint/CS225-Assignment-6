@@ -23,6 +23,7 @@
 #include <vector> //included for use of vector template
 #include <algorithm> //included to use sort()
 #include <stdexcept> // include to derive from runtime_error
+#include <cctype> //for isalpha()
 #endif
 
 // include header file
