@@ -779,6 +779,8 @@ void process_menu_in(char inchar)
 			std::cout << "What kind of sort do you want to do : (A)lphabetic, (V)alue, (T)ype";
 			std::string sortType;
 
+			sortType = 'A';
+
 			//based on if the session is interactive read in the type
 			if (interactive)
 			{
@@ -787,6 +789,7 @@ void process_menu_in(char inchar)
 			else if (!interactive)
 			{
 				std::cin >> sortType;
+				std::cin.ignore(10000, '\n');
 			}
 
 			switch (sortType[0])
