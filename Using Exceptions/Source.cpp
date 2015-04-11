@@ -133,6 +133,11 @@ int main()
 			std::cin.clear();
 			//std::cin.ignore(10000, '\n');
 			std::cout << "Error: " << err.what() << std::endl;
+
+			if (typeid(err) == typeid(std::bad_alloc))
+			{
+				std::cout << "Error: No Memory available, delete unneeded items" << std::endl;
+			}
 		}
 		catch (...)
 		{
